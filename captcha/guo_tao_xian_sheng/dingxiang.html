@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DingXiang</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .captcha-container {
+            display: flex;
+            min-width: 100%;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #captcha-id {
+            display: none;
+        }
+
+        #captcha-result {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.dingxiang-inc.com/ctu-group/captcha-ui/index.js" crossorigin="anonymous"
+            id="dx-captcha-script"></script>
+</head>
+<body>
+<div id="captcha-id">c760c93727b70d2cb5713d93e6e7869a</div>
+<div class="captcha-container">
+    <div id="c1"></div>
+</div>
+<script>
+    _dx.Captcha(document.getElementById('c1'), {
+        appId: document.getElementById('captcha-id').innerText,
+        apiServer: 'https://cap.dingxiang-inc.com',
+        success: function (token) {
+            var resultEl = document.createElement('div')
+            resultEl.id = 'captcha-result'
+            resultEl.innerText = token
+            document.body.appendChild(resultEl)
+        }
+    })
+</script>
+</body>
+</html>
