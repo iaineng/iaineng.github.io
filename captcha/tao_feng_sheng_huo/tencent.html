@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tencent</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #captcha-id {
+            display: none;
+        }
+
+        #captcha-result {
+            display: none;
+        }
+    </style>
+    <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+</head>
+<body>
+<div id="captcha-id">195243052</div>
+<script>
+    new TencentCaptcha(document.getElementById('captcha-id').innerText, function(res) {
+        var resultEl = document.createElement('div')
+        resultEl.id = 'captcha-result'
+        resultEl.innerText = res.ticket
+        document.body.appendChild(resultEl)
+    }).show()
+</script>
+</body>
+</html>
