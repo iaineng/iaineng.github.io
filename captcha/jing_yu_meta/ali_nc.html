@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ali NC</title>
+
+    <style>
+        body, html {
+            padding: 0;
+            margin: 0
+        }
+
+        ._nc .stage {
+            padding: 0
+        }
+
+        ._nc .stage1 .slider {
+            height: 52px !important;
+            border-radius: 0px !important;
+            box-shadow: 0 0 3px #999 !important;
+            background-color: #ddd !important;
+            position: static;
+        }
+
+        ._nc .stage1 .track div {
+            border-radius: 0 !important;
+            color: #fff !important;
+        }
+
+        ._nc .stage1 .bg-green {
+            background-color: #78c430 !important;
+        }
+
+        ._nc .stage1 .bg-red {
+            background-color: #78c430 !important;
+        }
+
+        #captcha-result {
+            display: none;
+        }
+    </style>
+
+    <script type="text/javascript" charset="utf-8" src="https://aeis.alicdn.com/sd/nch5/index.js?t=2015052012"></script>
+</head>
+<body>
+<div id="__nc" style="margin-left:auto;margin-right:auto;width:100%;">
+    <div id="nc"></div>
+</div>
+
+<script>
+    const nc_token = ["FFFF0N0000000000AF82", (new Date()).getTime(), Math.random()].join(':');
+    const nc = NoCaptcha.init({
+        renderTo: '#nc',
+        appkey: "FFFF0N0000000000AF82",
+        scene: "nc_register_h5",
+        token: nc_token,
+        trans: {"key1": "code200"},
+        elementID: ["usernameID"],
+        is_Opt: 0,
+        language: "cn",
+        timeout: 10000,
+        retryTimes: 5,
+        errorTimes: 5,
+        inline: false,
+        apimap: {},
+        bannerHidden: false,
+        initHidden: false,
+        callback: function (data) {
+            const resultEl = document.createElement('div');
+            resultEl.id = 'captcha-result';
+            resultEl.innerText = nc_token + ' ' + data.csessionid + ' ' + data.sig;
+            document.body.appendChild(resultEl);
+        },
+        error: function (s) {
+        }
+    });
+    NoCaptcha.setEnabled(true);
+    nc.reset();
+    NoCaptcha.upLang('cn', {
+        'LOADING': "加载中...",
+        'SLIDER_LABEL': "请向右滑动验证",
+        'CHECK_Y': "验证通过",
+        'ERROR_TITLE': "非常抱歉，这出错了...",
+        'CHECK_N': "验证未通过",
+        'OVERLAY_INFORM': "经检测你当前操作环境存在风险，请输入验证码",
+        'TIPS_TITLE': "验证码错误，请重新输入"
+    });
+</script>
+</body>
+</html>
