@@ -23,12 +23,12 @@
 <body>
 <div id="captcha-id">195243052</div>
 <script>
-    new TencentCaptcha(document.getElementById('captcha-id').innerText, function(res) {
-        var resultEl = document.createElement('div')
-        resultEl.id = 'captcha-result'
-        resultEl.innerText = res.ticket + ' ' + res.randstr
-        document.body.appendChild(resultEl)
-    }).show()
+  new TencentCaptcha(document.getElementById('captcha-id').innerText, function (res) {
+    var resultEl = document.createElement('div')
+    resultEl.id = 'captcha-result'
+    resultEl.innerText = res.ticket + ' ' + res.randstr
+    document.body.appendChild(resultEl)
+  }).show()
 </script>
 </body>
 </html>

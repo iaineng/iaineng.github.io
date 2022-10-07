@@ -35,16 +35,16 @@
     <div id="c1"></div>
 </div>
 <script>
-    _dx.Captcha(document.getElementById('c1'), {
-        appId: document.getElementById('captcha-id').innerText,
-        apiServer: 'https://cap.dingxiang-inc.com',
-        success: function (token) {
-            var resultEl = document.createElement('div')
-            resultEl.id = 'captcha-result'
-            resultEl.innerText = token
-            document.body.appendChild(resultEl)
-        }
-    })
+  _dx.Captcha(document.getElementById('c1'), {
+    appId: document.getElementById('captcha-id').innerText,
+    apiServer: 'https://cap.dingxiang-inc.com',
+    success: function (token) {
+      var resultEl = document.createElement('div')
+      resultEl.id = 'captcha-result'
+      resultEl.innerText = token
+      document.body.appendChild(resultEl)
+    },
+  })
 </script>
 </body>
 </html>
