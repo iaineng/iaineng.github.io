@@ -10,14 +10,6 @@
             padding: 0;
         }
 
-        .captcha-container {
-            display: flex;
-            min-width: 100%;
-            min-height: 100vh;
-            justify-content: center;
-            align-items: center;
-        }
-
         #captcha-id {
             display: none;
         }
@@ -30,13 +22,12 @@
             id="dx-captcha-script"></script>
 </head>
 <body>
-<div id="captcha-id">c760c93727b70d2cb5713d93e6e7869a</div>
-<div class="captcha-container">
+<div style="display: flex;justify-content: center;">
     <div id="c1"></div>
 </div>
 <script>
   _dx.Captcha(document.getElementById('c1'), {
-    appId: document.getElementById('captcha-id').innerText,
+    appId: 'c760c93727b70d2cb5713d93e6e7869a',
     apiServer: 'https://cap.dingxiang-inc.com',
     success: function (token) {
       var resultEl = document.createElement('div')
