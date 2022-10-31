@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Huo Yan Bei Fucker
 // @match        *://jinshuju.net/*
-// @version      0.1.1
+// @version      0.1.2
 // @author       lth,zjx
 // @run-at       document-start
-// @grant        none
+// @grant        GM_log
 // @updateURL    https://zengjx.tk/scripts/universal/huo-yan-bei-fucker.meta.js
 // @downloadURL  https://zengjx.tk/scripts/universal/huo-yan-bei-fucker.user.js
 // ==/UserScript==
@@ -23,7 +23,7 @@
       return
 
     const inputElements = document.querySelectorAll('input')
-    if (!inputElements)
+    if (inputElements.length === 0)
       return
 
     let correctAnswerMap = new Map()
@@ -35,6 +35,11 @@
         continue
       correctAnswerMap.set(apiCode, Array.isArray(correctAnswer) ? correctAnswer : [correctAnswer])
     }
+
+    if (correctAnswerMap.size === 0)
+      return
+
+    GM_log(JSON.stringify(questions))
 
     for (const inputElement of inputElements) {
       const answers = correctAnswerMap.get(inputElement.name)

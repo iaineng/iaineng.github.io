@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Huo Yan Bei Fucker
 // @match        *://jinshuju.net/*
-// @version      0.1.1
+// @version      0.1.2
 // @author       lth,zjx
 // @run-at       document-start
-// @grant        none
+// @grant        GM_log
 // @updateURL    https://zengjx.tk/scripts/universal/huo-yan-bei-fucker.meta.js
 // @downloadURL  https://zengjx.tk/scripts/universal/huo-yan-bei-fucker.user.js
 // ==/UserScript==
