@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Huo Yan Bei Fucker
 // @match        *://jinshuju.net/*
-// @version      0.1.2
+// @version      0.1.3
 // @author       lth,zjx
 // @run-at       document-start
 // @grant        GM_log
@@ -18,7 +18,8 @@
 
     clearInterval(timer)
 
-    const questions = globalThis?.GD?.publishedFormData?.data?.publishedForm?.form?.fields?.nodes
+    const publishedFormData = globalThis?.GD?.publishedFormData
+    const questions = publishedFormData?.data?.publishedForm?.form?.fields?.nodes
     if (!questions)
       return
 
@@ -39,7 +40,7 @@
     if (correctAnswerMap.size === 0)
       return
 
-    GM_log(JSON.stringify(questions))
+    GM_log(JSON.stringify(publishedFormData))
 
     for (const inputElement of inputElements) {
       const answers = correctAnswerMap.get(inputElement.name)
