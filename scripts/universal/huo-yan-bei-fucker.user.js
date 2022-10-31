@@ -5,8 +5,8 @@
 // @author       lth,zjx
 // @run-at       document-start
 // @grant        none
-// @updateURL    https://zengjx.tk/scripts/universal/huo_yan_bei_fucker.js
-// @downloadURL  https://zengjx.tk/scripts/universal/huo_yan_bei_fucker.js
+// @updateURL    https://zengjx.tk/scripts/universal/huo-yan-bei-fucker.meta.js
+// @downloadURL  https://zengjx.tk/scripts/universal/huo-yan-bei-fucker.user.js
 // ==/UserScript==
 
 (function () {
