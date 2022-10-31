@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Huo Yan Bei Fucker
 // @match        *://jinshuju.net/*
-// @version      0.1.0
+// @version      0.1.1
 // @author       lth,zjx
 // @run-at       document-start
 // @grant        none
@@ -16,16 +16,20 @@
     if (document.readyState !== 'complete')
       return
 
+    clearInterval(timer)
+
     const questions = globalThis?.GD?.publishedFormData?.data?.publishedForm?.form?.fields?.nodes
     if (!questions)
       return
 
     const inputElements = document.querySelectorAll('input')
-    let correctAnswerMap = new Map()
+    if (!inputElements)
+      return
 
+    let correctAnswerMap = new Map()
     for (const question of questions) {
       const apiCode = question?.apiCode
-      const answer = question?.extraConfigurableSettings?.answers[0]
+      const answer = question?.extraConfigurableSettings?.answers?.[0]
       const correctAnswer = answer?.correctAnswer
       if (!answer || !apiCode || !correctAnswer)
         continue
@@ -43,6 +47,5 @@
         }, 0)
       }
     }
-    clearInterval(timer)
   }, 3000)
 })()

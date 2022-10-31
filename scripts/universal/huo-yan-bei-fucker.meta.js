@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Huo Yan Bei Fucker
 // @match        *://jinshuju.net/*
-// @version      0.1.0
+// @version      0.1.1
 // @author       lth,zjx
 // @run-at       document-start
 // @grant        none
