@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Huo Yan Bei Fucker
 // @match        *://jinshuju.net/*
-// @version      0.2.1
+// @version      0.2.2
 // @author       lth,zjx
 // @run-at       document-start
 // @grant        GM_log
@@ -14,8 +14,8 @@
   'use strict'
 
   function bypassAntiCheat (GD) {
-    let extraConfigurableSettings
-    if (!(extraConfigurableSettings = GD?.publishedFormData?.data?.publishedForm?.form?.setting?.extraConfigurableSettings))
+    const extraConfigurableSettings = GD?.publishedFormData?.data?.publishedForm?.form?.setting?.extraConfigurableSettings
+    if (!extraConfigurableSettings || !Array.isArray(extraConfigurableSettings))
       return
 
     for (const setting of extraConfigurableSettings) {
@@ -55,7 +55,7 @@
 
     const publishedFormData = unsafeWindow?.GD?.publishedFormData
     const questions = publishedFormData?.data?.publishedForm?.form?.fields?.nodes
-    if (!questions)
+    if (!questions || !Array.isArray(questions))
       return
 
     const inputElements = document.querySelectorAll('input')
