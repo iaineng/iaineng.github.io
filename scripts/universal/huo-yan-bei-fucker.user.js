@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Huo Yan Bei Fucker
 // @match        *://jinshuju.net/*
-// @version      0.1.5
+// @version      0.2.0
 // @author       lth,zjx
 // @run-at       document-start
 // @grant        GM_log
@@ -13,13 +13,42 @@
 (function () {
   'use strict'
 
+  function bypassAntiCheat (GD) {
+    let extraConfigurableSettings
+    if (!(extraConfigurableSettings = GD?.publishedFormData?.data?.publishedForm?.form?.setting?.extraConfigurableSettings))
+      return
+
+    for (const setting of extraConfigurableSettings) {
+      let antiCheatingSetting
+      if (!(antiCheatingSetting = setting?.antiCheatingSetting))
+        continue
+
+      antiCheatingSetting.pasteDisabled = false
+      antiCheatingSetting.copyingDisabled = false
+      antiCheatingSetting.enabled = false
+      antiCheatingSetting.switchingScreenDisabled = false
+      antiCheatingSetting.switchingScreenLimit = 999
+      antiCheatingSetting.switchingScreenLimitTime = 999
+    }
+  }
+
+  let GD = undefined
+
+  Object.defineProperty(unsafeWindow, 'GD', {
+    get: () => GD,
+    set: (value) => {
+      bypassAntiCheat(value)
+      GD = value
+    },
+  })
+
   const timer = setInterval(() => {
     if (document.readyState !== 'complete')
       return
 
     clearInterval(timer)
 
-    const publishedFormData = GD?.publishedFormData
+    const publishedFormData = unsafeWindow?.GD?.publishedFormData
     const questions = publishedFormData?.data?.publishedForm?.form?.fields?.nodes
     if (!questions)
       return
@@ -35,7 +64,11 @@
       const correctAnswer = answer?.correctAnswer
       if (!answer || !apiCode || !correctAnswer)
         continue
-      correctAnswerMap.set(apiCode, Array.isArray(correctAnswer) ? correctAnswer : [correctAnswer])
+
+      correctAnswerMap.set(
+        apiCode,
+        Array.isArray(correctAnswer) ? correctAnswer : [correctAnswer],
+      )
     }
 
     if (correctAnswerMap.size === 0)
