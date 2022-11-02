@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Huo Yan Bei Fucker
 // @match        *://jinshuju.net/*
-// @version      0.1.4
+// @version      0.1.5
 // @author       lth,zjx
 // @run-at       document-start
 // @grant        GM_log
@@ -19,7 +19,7 @@
 
     clearInterval(timer)
 
-    const publishedFormData = globalThis?.GD?.publishedFormData
+    const publishedFormData = GD?.publishedFormData
     const questions = publishedFormData?.data?.publishedForm?.form?.fields?.nodes
     if (!questions)
       return
