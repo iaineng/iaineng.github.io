@@ -73,7 +73,6 @@
         Array.isArray(correctAnswer) ? correctAnswer : [correctAnswer],
       )
     }
-
     if (correctAnswerMap.size === 0)
       return
 
