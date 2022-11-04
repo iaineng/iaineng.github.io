@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Huo Yan Bei Fucker
 // @match        *://jinshuju.net/*
-// @version      0.2.4
+// @version      0.2.5
 // @author       lth,zjx
 // @run-at       document-start
 // @grant        GM_log
@@ -47,11 +47,8 @@
     if (document.readyState !== 'complete')
       return
 
-    clearInterval(timer)
-
     const publishedFormData = unsafeWindow?.GD?.publishedFormData
-    const questions = publishedFormData?.data?.publishedForm?.form?.fields?.nodes
-    if (!questions || !Array.isArray(questions))
+    if (!publishedFormData)
       return
 
     if (!GD) {
@@ -59,11 +56,11 @@
       unsafeWindow.location.reload()
     }
 
-    const inputElements = document.querySelectorAll('input')
-    if (inputElements.length === 0)
+    const questions = publishedFormData?.data?.publishedForm?.form?.fields?.nodes
+    if (!questions || !Array.isArray(questions))
       return
 
-    let correctAnswerMap = new Map()
+    const correctAnswerMap = new Map()
     for (const question of questions) {
       const apiCode = question?.apiCode
       const answer = question?.extraConfigurableSettings?.answers?.[0]
@@ -80,7 +77,9 @@
     if (correctAnswerMap.size === 0)
       return
 
-    GM_log(JSON.stringify(publishedFormData))
+    const inputElements = document.getElementsByTagName('input')
+    if (inputElements.length === 0)
+      return
 
     for (const inputElement of inputElements) {
       const answers = correctAnswerMap.get(inputElement.name)
@@ -93,5 +92,8 @@
         }, 0)
       }
     }
-  }, 3000)
+
+    clearInterval(timer)
+    GM_log(JSON.stringify(publishedFormData))
+  }, 500)
 })()
