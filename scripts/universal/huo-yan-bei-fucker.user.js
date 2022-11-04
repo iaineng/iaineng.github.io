@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Huo Yan Bei Fucker
 // @match        *://jinshuju.net/*
-// @version      0.2.3
+// @version      0.2.4
 // @author       lth,zjx
 // @run-at       document-start
 // @grant        GM_log
@@ -49,15 +49,15 @@
 
     clearInterval(timer)
 
-    if (!GD) {
-      GM_log('unsafe! reload page!')
-      unsafeWindow.location.reload()
-    }
-
     const publishedFormData = unsafeWindow?.GD?.publishedFormData
     const questions = publishedFormData?.data?.publishedForm?.form?.fields?.nodes
     if (!questions || !Array.isArray(questions))
       return
+
+    if (!GD) {
+      GM_log('unsafe! reload page!')
+      unsafeWindow.location.reload()
+    }
 
     const inputElements = document.querySelectorAll('input')
     if (inputElements.length === 0)
