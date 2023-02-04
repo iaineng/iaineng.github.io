@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YiDun</title>
+  <script src="https://cstaticdun.126.net/load.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #captcha-result {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <div id="captcha"></div>
+</div>
+<script>
+  initNECaptcha({
+    element: '#captcha',
+    captchaId: '2afefb7448d54e68a4dbd4277095f2d7',
+    width: '320px',
+    mode: 'popup',
+    apiVersion: 2,
+    popupStyles: {
+      position: 'fixed',
+      top: '20%',
+    },
+    onVerify: function (err, data) {
+      var resultEl = document.createElement('div')
+      resultEl.id = 'captcha-result'
+      resultEl.innerText = data.validate
+      document.body.appendChild(resultEl)
+    },
+  }, (instance) => {
+    instance.verify()
+  })
+</script>
+</body>
+</html>
